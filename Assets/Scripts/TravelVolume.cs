@@ -19,7 +19,7 @@ public class TravelVolume : MonoBehaviour
             }
             else
             {
-                LevelManager.LoadLevel(levelIndex);
+                LevelManager.StageNext();
             }
         }
     }

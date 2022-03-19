@@ -18,36 +18,51 @@ public static class Utilities
     }
 }
 // idea from https://gamedev.stackexchange.com/questions/110958/what-is-the-proper-way-to-handle-data-between-scenes
+public struct LevelParams
+{
+    public int mazeSize;
+    public float cannonPeriod;
+}
+
 public static class GameStats
 {
     public static int Score { get; set; }
-    public static int SavedScore { get; set; }
+    public static int HighScore { get; set; }
     public static int Level { get; set; }
+
+    public static int MazeScene = 1;
+    public static int MainMenu = 0;
     public static void SaveScore()
     {
-        SavedScore = Score;
+        HighScore = Score;
     }
-    public static void RevertScore()
+    public static void Restart()
     {
-        Score = SavedScore;
+        Score = 0;
+        Level = 0;
     }
+
+    public static LevelParams CurrentParams { get; set; }
+
 }
 
 public static class LevelManager
 {
-    public static void ReloadScene()
+    public static void StartGame()
     {
-        GameStats.RevertScore();
-        SceneManager.LoadScene(GameStats.Level);
+        GameStats.Restart();
+        SceneManager.LoadScene(GameStats.MazeScene);
     }
-    public static void LoadLevel(int level)
+    public static void StageNext()
     {
+        GameStats.Score += 1;
         GameStats.SaveScore();
-        SceneManager.LoadScene(level);
+        GameStats.Level += 1;
+        SceneManager.LoadScene(GameStats.MazeScene);
     }
     public static void GameOver()
     {
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene(GameStats.MainMenu);
     }
 }

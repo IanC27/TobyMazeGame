@@ -8,11 +8,11 @@ public class MazeConstructor : MonoBehaviour
 
     [SerializeField]
     [Range(1, 50)]
-    private int width = 10;
+    private int width = GameStats.CurrentParams.mazeSize;
 
     [SerializeField]
     [Range(1, 50)]
-    private int height = 10;
+    private int height = GameStats.CurrentParams.mazeSize;
 
     [SerializeField]
     private WallTile wall;
@@ -21,12 +21,21 @@ public class MazeConstructor : MonoBehaviour
 
     public Tilemap wallMap;
     public Tilemap outerWallMap;
+
+    public GameObject cannon;
+    public Transform playerTransform;
     void Start()
     {
+        width = GameStats.CurrentParams.mazeSize;
+        height = GameStats.CurrentParams.mazeSize;
         var maze = MazeGenerator.Generate(width, height);
         mazeDraw(maze);
         outerBoxDraw(width, height, 3);
-       
+        var levelCannon = Instantiate(cannon, new Vector3(width*2 + 2.5f, height*2 + 2.5f, 0), Quaternion.identity);
+        levelCannon.GetComponent<CannonFire>().target = playerTransform;
+        levelCannon.GetComponent<CannonFire>().period = GameStats.CurrentParams.cannonPeriod;
+
+
     }
 
     private void mazeDraw(WallState[,] maze)
@@ -82,8 +91,8 @@ public class MazeConstructor : MonoBehaviour
 
     private void outerBoxDraw(int width, int height, int offset)
     {
-        width = width;
-        height = height;
+        //width = width;
+        //height = height;
         Vector3Int origin = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
         Vector3Int drawPos = new Vector3Int (origin.x - offset, origin.y - offset , 0);
         Vector3Int deltaY = new Vector3Int(0, height*2 + offset*2, 0);

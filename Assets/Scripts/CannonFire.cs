@@ -12,7 +12,6 @@ public class CannonFire : MonoBehaviour
     public AudioSource fireSound;
 
     private float time = 0.0f;
-    // Start is called before the first frame update
 
     // Update is called once per frame
     void FixedUpdate()
