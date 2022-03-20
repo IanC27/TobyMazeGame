@@ -14,7 +14,7 @@ public class DamageSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            LevelManager.StartGame();
         }
     }
     public void GameOver()

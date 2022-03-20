@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TravelVolume : MonoBehaviour
 {
-    public Collider player;
+    public Collider2D player;
     public bool isDeath = false;
-    public int levelIndex;
 
-    public void OnTriggerEnter(Collider collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("collision");
         if (collision == player)

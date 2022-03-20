@@ -34,9 +34,9 @@ public static class GameStats
     public static int MainMenu = 0;
     public static void SaveScore()
     {
-        HighScore = Score;
+        if (Score > HighScore) HighScore = Score;
     }
-    public static void Restart()
+    public static void Reset()
     {
         Score = 0;
         Level = 0;
@@ -50,7 +50,7 @@ public static class LevelManager
 {
     public static void StartGame()
     {
-        GameStats.Restart();
+        GameStats.Reset();
         SceneManager.LoadScene(GameStats.MazeScene);
     }
     public static void StageNext()

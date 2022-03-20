@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
-    public LevelParams CustomParams = new LevelParams { cannonPeriod = 1f, mazeSize = 15 };
+    public LevelParams CustomParams = new LevelParams { cannonPeriod = 1.5f, mazeSize = 10 };
     public Slider CustomMazeSize;
     public Slider CustomFireRate;
     public void Play()

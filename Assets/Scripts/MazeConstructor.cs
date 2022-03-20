@@ -23,18 +23,24 @@ public class MazeConstructor : MonoBehaviour
     public Tilemap outerWallMap;
 
     public GameObject cannon;
-    public Transform playerTransform;
+    public GameObject player;
+    public GameObject exit;
     void Start()
     {
         width = GameStats.CurrentParams.mazeSize;
         height = GameStats.CurrentParams.mazeSize;
         var maze = MazeGenerator.Generate(width, height);
+        // build maze and place cannon
         mazeDraw(maze);
         outerBoxDraw(width, height, 3);
         var levelCannon = Instantiate(cannon, new Vector3(width*2 + 2.5f, height*2 + 2.5f, 0), Quaternion.identity);
-        levelCannon.GetComponent<CannonFire>().target = playerTransform;
+        levelCannon.GetComponent<CannonFire>().target = player.transform;
         levelCannon.GetComponent<CannonFire>().period = GameStats.CurrentParams.cannonPeriod;
-
+        // place the exit door and close maze
+        var DoorPos = new Vector3(width * 2 - 0.5f, height * 2 - 0.5f, 0);
+        wallMap.SetTile(new Vector3Int(width * 2, height * 2 - 1, 0), wall);
+        var levelExit = Instantiate(exit, DoorPos, Quaternion.identity);
+        levelExit.GetComponent<TravelVolume>().player = player.GetComponent<Collider2D>();
 
     }
 

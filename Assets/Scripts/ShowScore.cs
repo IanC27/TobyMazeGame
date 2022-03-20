@@ -5,10 +5,18 @@ using UnityEngine.UI;
 
 public class ShowScore : MonoBehaviour
 {
+    public bool highScore;
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Text>().text = GameStats.Score.ToString();
+        if (highScore)
+        {
+            GetComponent<Text>().text = GameStats.HighScore.ToString();
+        } else
+        {
+            GetComponent<Text>().text = GameStats.Score.ToString();
+        }
+        
     }
 
 }
