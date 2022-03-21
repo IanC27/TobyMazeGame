@@ -5,21 +5,14 @@ using UnityEngine;
 public class TravelVolume : MonoBehaviour
 {
     public Collider2D player;
-    public bool isDeath = false;
+    // public bool isDeath = false;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collision");
+        //Debug.Log("collision");
         if (collision == player)
         {
-            if (isDeath)
-            {
-                LevelManager.GameOver();
-            }
-            else
-            {
-                LevelManager.StageNext();
-            }
+             LevelManager.StageNext();
         }
     }
 }

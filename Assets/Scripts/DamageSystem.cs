@@ -16,6 +16,10 @@ public class DamageSystem : MonoBehaviour
         {
             LevelManager.StartGame();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LevelManager.ReturnToMain();
+        }
     }
     public void GameOver()
     {

@@ -1,0 +1,11 @@
+- Swappable color palatte (dark mode)
+- Find good font(s) that fit
+- endless mode with increasing difficulty
+- put all input stuff in one script (see control pattern in book)
+- add better buttons/ make my own
+- tutorial level/ in-game main menu
+
+paramaterize:
+  number of cannons
+  cannonball speed
+  

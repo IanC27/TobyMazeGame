@@ -30,8 +30,8 @@ public static class GameStats
     public static int HighScore { get; set; }
     public static int Level { get; set; }
 
-    public static int MazeScene = 1;
-    public static int MainMenu = 0;
+    public const int MazeScene = 1;
+    public const int MainMenu = 0;
     public static void SaveScore()
     {
         if (Score > HighScore) HighScore = Score;
@@ -41,7 +41,12 @@ public static class GameStats
         Score = 0;
         Level = 0;
     }
+    public static void ResetHighScore()
+    {
+        HighScore = 0;
+    }
 
+    public static bool UsingCustomParams = false;
     public static LevelParams CurrentParams { get; set; }
 
 }
@@ -60,7 +65,7 @@ public static class LevelManager
         GameStats.Level += 1;
         SceneManager.LoadScene(GameStats.MazeScene);
     }
-    public static void GameOver()
+    public static void ReturnToMain()
     {
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(GameStats.MainMenu);

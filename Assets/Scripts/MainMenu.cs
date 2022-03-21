@@ -6,13 +6,12 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
-    public LevelParams CustomParams = new LevelParams { cannonPeriod = 1.5f, mazeSize = 10 };
+    private LevelParams DefaultParams = new LevelParams { cannonPeriod = 2f, mazeSize = 10 };
     public Slider CustomMazeSize;
     public Slider CustomFireRate;
+    
     public void Play()
     {
-        GameStats.CurrentParams = CustomParams;
         LevelManager.StartGame();
     }
 
@@ -24,7 +23,33 @@ public class MainMenu : MonoBehaviour
 
     public void SetCustomParams()
     {
-        CustomParams = new LevelParams { cannonPeriod = 1 / CustomFireRate.value, mazeSize = Mathf.FloorToInt(CustomMazeSize.value) };
-        Debug.Log(CustomParams);
+        GameStats.CurrentParams = new LevelParams { cannonPeriod = 1 / CustomFireRate.value, mazeSize = Mathf.FloorToInt(CustomMazeSize.value) };
+        GameStats.UsingCustomParams = true;
+        GameStats.ResetHighScore();
+    }
+
+    public void SliderReset()
+    {
+        CustomMazeSize.value = GameStats.CurrentParams.mazeSize;
+        CustomFireRate.value = 1 / GameStats.CurrentParams.cannonPeriod;
+    }
+
+    public void SlideDefaultSettings()
+    {
+        CustomMazeSize.value = DefaultParams.mazeSize;
+        CustomFireRate.value = 1 / DefaultParams.cannonPeriod;
+    }
+    private void Start()
+    {
+        if (GameStats.UsingCustomParams)
+        {
+            SliderReset();
+        } else
+        {
+            SlideDefaultSettings();
+            SetCustomParams();
+        }
+        
+
     }
 }
