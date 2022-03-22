@@ -7,7 +7,7 @@ Footsteps: originals by duckduckpony under CC3.0. https://freesound.org/people/d
            bitcrushed
 Cannon: by DeVern. https://freesound.org/people/DeVern/sounds/517664/
 
-Sprites by me.
+Sprites by Ian Cowan.
 
 Fonts:
 Liberation Sans by Adobe
