@@ -38,7 +38,7 @@ public class MazeConstructor : MonoBehaviour
         levelCannon.GetComponent<CannonFire>().period = GameStats.CurrentParams.cannonPeriod;
         // place the exit door and close maze
         var DoorPos = new Vector3(width * 2 - 0.5f, height * 2 - 0.5f, 0);
-        wallMap.SetTile(new Vector3Int(width * 2, height * 2 - 1, 0), wall);
+        //wallMap.SetTile(new Vector3Int(width * 2, height * 2 - 1, 0), wall);
         var levelExit = Instantiate(exit, DoorPos, Quaternion.identity);
         levelExit.GetComponent<TravelVolume>().player = player.GetComponent<Collider2D>();
 

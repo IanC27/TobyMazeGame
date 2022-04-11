@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// algorithm adapted from here: https://github.com/gamedolphin/youtube_unity_maze
 [Flags]
 public enum WallState
 {
@@ -161,7 +162,7 @@ public static class MazeGenerator
 
         // create entrance and exit
         maze[0, 0] &= ~WallState.left;
-        maze[width - 1, height - 1] &= ~WallState.right;
+        //maze[width - 1, height - 1] &= ~WallState.right;
         return maze;
     }
 }
